@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Reg</h1>
+    {% for team in team_stats %}
+    <div><p>{{ team.name }} has the following wins: <b>{{ team.wins }}</b></p></div>
+    {% endfor %}
+{% endblock %}
