@@ -23,6 +23,6 @@ class Predictions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     predicts = db.Column(db.String(60))
     user_id = db.Column(db.Integer, db.ForeignKey('balheads.id'))
-
+    team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
     def __repr__(self):
         return "<{}'s Predictions>".format(self.user_id)
