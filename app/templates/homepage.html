@@ -3,8 +3,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Reg</h1>
+    <h1>Regular Season Table:</h1>
     {% for team in team_stats %}
-    <div><p>{{ team.name }} has the following wins: <b>{{ team.wins }}</b></p></div>
+    <div><p>{{ team.name }} have the following wins: <b>{{ team.wins }}</b></p></div>
     {% endfor %}
 {% endblock %}

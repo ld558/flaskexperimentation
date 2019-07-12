@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Sign In</h1>
+<!--creates a container for the web form, action indicates
+which URL to submit the details to, empty signifies that which
+rendered the form. method: HTTP request method: POST prevents address
+bar clutter. nonvalidate: leave to flask.
+-->
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+<!--            Insert name of form here-->
+            {{ form.username.label }}<br>
+<!--            configure form size here-->
+            {{ form.username(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
