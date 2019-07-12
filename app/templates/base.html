@@ -4,8 +4,8 @@
     </head>
     <body>
         <div>Balhead NBA Wagering
-            <a href="{{url_for('homepage'}}">Home</a>
-            <a href="{{url_for('login'}}">Login</a>
+            <a href="{{ url_for('homepage') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
         </div>
         <hr>
 <!--        return flashed messages, once called, removed-->
@@ -14,7 +14,7 @@
         {% if messages %}
         <ul>
             {% for message in messages %}
-            <li>{{ message}}</li>
+            <li>{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}
