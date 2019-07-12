@@ -1,7 +1,7 @@
 from app import db
 
 
-class Balhead(db.Model):
+class Balheads(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     password_hash = db.Column(db.String(128))
@@ -22,7 +22,7 @@ class Teams(db.Model):
 class Predictions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     predicts = db.Column(db.String(60))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('balheads.id'))
 
     def __repr__(self):
         return "<{}'s Predictions>".format(self.user_id)
