@@ -15,10 +15,17 @@ bar clutter. nonvalidate: leave to flask.
             {{ form.username.label }}<br>
 <!--            configure form size here-->
             {{ form.username(size=32) }}
+            {% for error in form.username.errors %}
+<!--            returns error message from the flask webform application-->
+            <span style="color: red;">[{{ error}}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error}}]</span>
+            {% endfor %}
         </p>
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
