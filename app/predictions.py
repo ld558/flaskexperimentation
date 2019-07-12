@@ -1,0 +1,3 @@
+
+class Predictions(dict):
+
