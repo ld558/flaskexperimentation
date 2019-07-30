@@ -1,28 +1,28 @@
 from app import db
 
 
-class Balheads(db.Model):
+class Balhead(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    predictions = db.relationship('Predictions', backref='author', lazy='dynamic')
+    user_predictions = db.relationship('Predict',backref='author', lazy = 'dynamic')
 
     def __repr__(self):
         return '<Balhead: {}>'.format(self.username)
 
 
-class Teams(db.Model):
+class Team(db.Model):
     id = db.Column(db.String(3), primary_key=True)
     name = db.Column(db.String(64), unique=True)
-    predict_id = db.Column(db.Integer, db.ForeignKey('predictions.id'))
-    predictions = db.relationship('Estimated wins', backref='team', lazy='dynamic')
+    team_predictions = db.Relationship('Predict', backref='team', lazy = 'dynamic')
+
     def __repr__(self):
         return '<Team: The {}'.format(self.name)
 
-class Predictions(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    predicts = db.Column(db.String(60))
-    user_id = db.Column(db.Integer, db.ForeignKey('balheads.id'))
-    team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
-    def __repr__(self):
-        return "<{}'s Predictions>".format(self.user_id)
+class Predict(db.Model):
+    prediction = db.Column(db.Integer)
+    balhead_id = db.Column(db.Integer, db.ForeignKey('balhead.id'))
+    team_id = db.Column(db.String(3), db.ForeignKey('team.id'))
+
+    def __repr(self):
+        return '<Prediction by UserId: {}, Team: {} ; Wins: {}>'.format(self.balhead_id,self.team_id,self.prediction)
