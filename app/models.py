@@ -12,7 +12,7 @@ class Balhead(db.Model):
 
 
 class Team(db.Model):
-    id = db.Column(db.String(3), primary_key=True)
+    id = db.Column(db.String(3), primary_key=True, index=True)
     name = db.Column(db.String(64), unique=True)
     team_predictions = db.relationship('Predict', backref='team', lazy = 'dynamic')
 
@@ -20,10 +20,11 @@ class Team(db.Model):
         return '<Team: The {}'.format(self.name)
 
 class Predict(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
     prediction = db.Column(db.Integer)
-    balhead_id = db.Column(db.Integer, db.ForeignKey('balhead.id'))
+    balhead_id = db.Column(db.Integer, db.ForeignKey('balhead.username'))
     team_id = db.Column(db.String(3), db.ForeignKey('team.id'))
+    id = db.Column(db.String(70), primary_key=True, index=True)
+    id = balhead_id + " ; " + team_id
 
-    def __repr(self):
-        return '<Prediction by UserId: {}, Team: {} ; Wins: {}>'.format(self.balhead_id,self.team_id,self.prediction)
+    def __repr__(self):
+        return '<Prediction by {}; Team: {} - Wins: {}>'.format(self.balhead_id,self.team_id,self.prediction)
